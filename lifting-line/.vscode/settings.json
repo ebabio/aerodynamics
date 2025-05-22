@@ -1,0 +1,16 @@
+{
+    "[latex]": {
+        "editor.defaultFormatter": "James-Yu.latex-workshop"
+    },
+    "latex-workshop.formatting.latex": "tex-fmt",
+    "latex-workshop.bibtex-format.tab": "4 spaces",
+    "latex-workshop.formatting.tex-fmt.args": [
+        "--nowrap",
+        "--tabsize",
+        "4",
+        "--verbose"
+    ],
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.view.outline.sync.viewer": true,
+    "latex-workshop.latex.outDir": "%DIR%/output"
+}
