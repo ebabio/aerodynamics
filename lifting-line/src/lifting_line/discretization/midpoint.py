@@ -1,4 +1,5 @@
 import numpy as np
+from scipy.linalg import toeplitz
 
 def isvector(x: np.array) -> bool:
     """Check if an array is a vector"""
@@ -8,6 +9,12 @@ def isvector(x: np.array) -> bool:
             non_one_dimensions += 1
     return non_one_dimensions == 1
 
+def enforce_column_vector(x: np.array) -> np.array:
+    """Convert a vector to a column vector"""
+    if x.ndim == 1:
+        return np.atleast_2d(x).T
+    if x.ndim == 2 and x.shape[1] != 1:
+        return x.T
 
 def difference(x: np.array) -> np.array:
     """Calculate the midpoint difference between consecutive values in an array.
@@ -23,6 +30,45 @@ def difference(x: np.array) -> np.array:
     dx[1:-1] = (x[2:] - x[:-2]) / 2
     return dx
 
+def difference_operator(x: np.array) -> np.array:
+    """Return the difference operator using a midpoint discretization.
+    
+    The difference operator D returns the difference if multiplied against the column vector:
+    
+    Delta f = D * f
+    """
+    assert isvector(x)
+    nx = x.size
+    D = toeplitz(
+        np.concatenate(([0, -1/2], np.zeros([nx-2]))),
+        np.concatenate(([0, +1/2], np.zeros([nx-2])))
+    )
+    D[0, 0] = -1/2
+    D[-1, -1] = 1/2
+    return D
+    
+def derivative(f: np.array, x: np.array) -> np.array:
+    """Calculate the derivative of a function using the midpoint rule."""
+    assert isvector(f)
+    assert isvector(x)
+    assert f.shape == x.shape
+    
+    df = difference(f)
+    dx = difference(x)
+    return df / dx
+
+def derivative_operator(x: np.array) -> np.array:
+    """Return the derivative operator given a midpoint discretization.
+    
+    The derivative operator D returns the derivative if multiplied against the  column vector:
+    
+    f' = D * f
+    """
+    x = enforce_column_vector(x)
+    assert isvector(x)
+    D = difference_operator(x)
+    return D/(D@x)
+    
 def integrate(f: np.array, x: np.array) -> np.array:
     """Integrate a function using the midpoint rule."""
     assert isvector(f)
@@ -46,13 +92,5 @@ def integrate_cauchy(f: np.array, x: np.array, x_singular: np.array) -> np.array
     
     return integrate(f, x)
 
-def derivative(f: np.array, x: np.array) -> np.array:
-    """Calculate the derivative of a function using the midpoint rule."""
-    assert isvector(f)
-    assert isvector(x)
-    assert f.shape == x.shape
-    
-    df = difference(f)
-    dx = difference(x)
-    return df / dx
+
     

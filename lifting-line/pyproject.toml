@@ -10,8 +10,9 @@ version = "0.1.0"
 # Default environment
 [tool.pixi.dependencies]
 python = "3.12.*"
-cowpy = "1.1.*"
 numpy = "*"
+scipy = "*"
+matplotlib = "*"
 
 [tool.pixi.pypi-dependencies]
 lifting_line = { path = ".", editable = true }

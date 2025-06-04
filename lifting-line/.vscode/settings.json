@@ -12,5 +12,10 @@
     ],
     "latex-workshop.latex.autoBuild.run": "onSave",
     "latex-workshop.view.outline.sync.viewer": true,
-    "latex-workshop.latex.outDir": "%DIR%/output"
+    "latex-workshop.latex.outDir": "%DIR%/output",
+    "python.testing.pytestArgs": [
+        "test"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
 }
