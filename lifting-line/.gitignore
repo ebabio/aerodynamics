@@ -1,0 +1,6 @@
+# pixi environments
+.pixi
+# build and cache
+*.egg-info
+*.pyc
+*.bak
