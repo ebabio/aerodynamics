@@ -1,7 +1,7 @@
 import math
 import numpy as np
 
-import lifting_line.discretization.midpoint as discretization
+import wing_modelling.discretization.midpoint as discretization
 
 def compute_lift_ideal_y(alpha_y, chord_y, y, velocity, cl_alpha_y = None, density = 1.225):
     """Compute the ideal circulation along the wingspan. Ideal in the sense of disregarding vortex effects.

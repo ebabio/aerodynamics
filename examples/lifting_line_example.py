@@ -5,8 +5,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
 
-import lifting_line.aero.lifting_line as lifting_line
-import lifting_line.discretization.midpoint as discretization
+import wing_modelling.aero.lifting_line as lifting_line
+import wing_modelling.discretization.midpoint as discretization
 import aircraft_example
 
 #Input
@@ -26,9 +26,9 @@ surface = discretization.integrate(chord_y, y)[-1]
 
 #Compute lift
 lift_y, drag_y, induced_alpha_y = \
-    lifting_line.compute_lift_y(alpha_y, chord_y, y, velocity, b_scale=1.0)
+    wing_modelling.compute_lift_y(alpha_y, chord_y, y, velocity, b_scale=1.0)
 lift_y_ideal, drag_y_ideal, _  = \
-    lifting_line.compute_lift_y(alpha_y, chord_y, y, velocity, b_scale=np.inf)
+    wing_modelling.compute_lift_y(alpha_y, chord_y, y, velocity, b_scale=np.inf)
 lift = discretization.integrate(lift_y, y)[-1]
 drag = discretization.integrate(drag_y, y)[-1]
 lift_ideal = discretization.integrate(lift_y_ideal, y)[-1]

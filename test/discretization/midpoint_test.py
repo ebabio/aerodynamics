@@ -2,7 +2,7 @@ import math
 import numpy as np
 import pytest
 
-import lifting_line.discretization.midpoint as discretization
+import wing_modelling.discretization.midpoint as discretization
 
 def x_range():
     x_range = np.array([-1, 2])
@@ -56,4 +56,4 @@ def test_cauchy_integration():
     assert(abs(F_definite - F_expected) < tolerance)
 
 if __name__ == "__main__":
-    pytest.main()
+    pytest.main([__file__])

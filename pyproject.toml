@@ -1,7 +1,7 @@
 [tool.pixi.workspace]
 authors = ["Enrique Babio <enrique.babio@skydweller.aero>"]
 channels = ["conda-forge"]
-name = "lifting_line"
+name = "wing_modelling"
 platforms = ["win-64"]
 version = "0.1.0"
 
@@ -15,7 +15,7 @@ scipy = "*"
 matplotlib = "*"
 
 [tool.pixi.pypi-dependencies]
-lifting_line = { path = ".", editable = true }
+wing_modelling = { path = ".", editable = true }
 
 # Testing environent
 [tool.pixi.feature.test.dependencies]

@@ -950,11 +950,6 @@ packages:
   purls: []
   size: 55476
   timestamp: 1727963768015
-- pypi: .\
-  name: lifting-line
-  version: 0.0.0
-  sha256: 5b5bacc492e9a733265e1fd0b66af676985393c4c59eccae07583c87ce81543f
-  editable: true
 - conda: https://conda.anaconda.org/conda-forge/win-64/matplotlib-3.10.3-py312h2e8e312_0.conda
   sha256: 9bca2f50f6a00a9e1f6d07a7c447a02e7067ef0924bfa63da45e1362bae922b9
   md5: 914c15eac59e9bd477e94b0103e47f63
@@ -1449,6 +1444,11 @@ packages:
   purls: []
   size: 750733
   timestamp: 1743195092905
+- pypi: .\
+  name: wing-modelling
+  version: 0.0.0
+  sha256: abc7b4de1ebb0fd85e7b93a1fef92382d29357966a48f9f387a13a702be4046f
+  editable: true
 - conda: https://conda.anaconda.org/conda-forge/win-64/xorg-libxau-1.0.12-h0e40799_0.conda
   sha256: 047836241b2712aab1e29474a6f728647bff3ab57de2806b0bb0a6cf9a2d2634
   md5: 2ffbfae4548098297c033228256eb96e
