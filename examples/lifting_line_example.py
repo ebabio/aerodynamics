@@ -32,8 +32,15 @@ lift_y_ideal, drag_y_ideal, _  = \
 lift = discretization.integrate(lift_y, y)[-1]
 drag = discretization.integrate(drag_y, y)[-1]
 lift_ideal = discretization.integrate(lift_y_ideal, y)[-1]
+cl_alpha = lift / (q_bar * surface) / alpha_0
 
-lift_ratio = lift / lift_ideal
+# Theoretical results
+cl_alpha_ideal = 2 * math.pi
+aspect_ratio = b**2 / surface
+efficiency = .9 # Oswald efficiency
+cl_alpha_theory = cl_alpha_ideal/(1 + cl_alpha_ideal / (math.pi * efficiency * aspect_ratio))
+cl_theory = cl_alpha_theory * alpha_0
+cd_i_theory = cl_theory**2 / (math.pi * efficiency * aspect_ratio)
 
 #Output results
 output_path = Path(__file__).parent / '../doc/input'
@@ -53,9 +60,9 @@ plt.savefig(output_path / 'ex_lift_drag_distribution.png')
 plt.clf()
 
 # Induced angle of attack
-plt.plot(y, induced_alpha_y)
+plt.plot(y, np.vectorize(math.degrees)(induced_alpha_y))
 plt.xlabel('y [m]')
-plt.ylabel('Induced AoA [rad]')
+plt.ylabel('Induced AoA [deg]')
 plt.title('Spanwise Induced AoA Distribution')
 plt.grid(True)
 plt.savefig(output_path / 'ex_induced_alpha.png')
@@ -65,8 +72,11 @@ plt.clf()
 performance_values = {
     'lift': lift,
     'drag': drag,
-    'lift_ratio': lift_ratio,
-    'lift_to_drag': lift/drag
+    'cl_alpha': cl_alpha,
+    'lift_to_drag': lift/drag,
+    'efficiency': efficiency,
+    'cl_alpha_theory': cl_alpha_theory,
+    'lift_to_drag_theory': cl_theory / cd_i_theory
 }
 with open(output_path / 'ex_performance_values.tex', 'w') as f:
     for key, value in performance_values.items():

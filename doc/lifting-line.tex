@@ -6,18 +6,22 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}	% allows unnumbered equations with equation*
 \usepackage{amssymb}	%% allows math logical symbols
+\usepackage[
+	style=numeric,
+]{biblatex}
 \usepackage{graphicx}	% allows for graphics numbering
+\usepackage{hyperref}
 \usepackage{float}		% allows to use [H] float, stricter version of [h]
 \usepackage{enumitem}	% allows for resumed enumerations
 \usepackage[bb=boondox]{mathalfa}	% allows for double-struck 1
 \usepackage{tabularx}
-\usepackage{hyperref}
 
-\bibliographystyle{ieeetr}
+\addbibresource{textfiles/references.bib}
 
 \begin{document}
-	\maketitle
 
+\maketitle
+\tableofcontents
 \pagenumbering{arabic}
 
 \input{textfiles/lifting-line}
